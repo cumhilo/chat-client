@@ -1,6 +1,5 @@
 package me.cxmilo.chat.client.client;
 
-import java.beans.ConstructorProperties;
 import java.net.Socket;
 
 public class Client {
@@ -9,11 +8,6 @@ public class Client {
     private String channel;
     private String name;
 
-    @ConstructorProperties({
-            "socket",
-            "channel",
-            "nick"
-    })
     public Client(Socket socket) {
         this.socket = socket;
     }
@@ -40,19 +34,6 @@ public class Client {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    // Builder
-    // This cannot be considered as a builder
-
-    public Client name(String name) {
-        this.name = name;
-        return this;
-    }
-
-    public Client channel(String channel) {
-        this.channel = channel;
-        return this;
     }
 
     public Client build() {

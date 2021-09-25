@@ -33,10 +33,10 @@ public class ClientConnectService implements Service {
         }
 
         // Initialize the chat
-        Client client = new Client(socket)
-                .name(name)
-                .channel(channel)
-                .build();
+        Client client = new Client(socket);
+
+        client.setName(name);
+        client.setChannel(channel);
 
         new ChatThread(client).start();
         System.out.println("Successfully started");
