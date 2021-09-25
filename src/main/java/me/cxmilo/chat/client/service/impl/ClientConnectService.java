@@ -38,7 +38,7 @@ public class ClientConnectService implements Service {
                 .channel(channel)
                 .build();
 
-        new Thread(new ChatThread(client)).start();
+        new ChatThread(client).start();
         System.out.println("Successfully started");
         return true;
     }
