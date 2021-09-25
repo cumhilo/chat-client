@@ -1,5 +1,8 @@
+import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
+
 plugins {
     java
+    id("com.github.johnrengelman.shadow") version ("7.0.0")
 }
 
 group = "me.cxmilo.chat"
@@ -11,9 +14,6 @@ repositories {
 }
 
 dependencies {
-    // gson
-    implementation("com.google.code.gson:gson:2.7")
-
     // test
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.6.0")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
@@ -21,4 +21,8 @@ dependencies {
 
 tasks.getByName<Test>("test") {
     useJUnitPlatform()
+}
+
+tasks.withType<ShadowJar> {
+    archiveFileName.set("chat-client.jar")
 }
