@@ -39,7 +39,7 @@ public class ClientConnectService implements Service {
                 .build();
 
         new Thread(new ChatThread(client)).start();
-
+        System.out.println("Successfully started");
         return true;
     }
 
