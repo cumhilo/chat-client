@@ -21,6 +21,8 @@ public class ClientConnectService implements Service {
         this.channel = channel;
     }
 
+
+    // I think this could not be considered as a service, I will probably change it.
     @Override
     public boolean start() {
         try {
