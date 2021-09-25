@@ -25,8 +25,6 @@ public class ChatController {
             return;
         }
 
-        conn.start();
-
         // Shutdown hook
         // I don't think this will work, sorry it's my first time trying this
         Runtime.getRuntime().addShutdownHook(new ShutdownThread());
