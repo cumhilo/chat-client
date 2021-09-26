@@ -11,8 +11,6 @@ public class ChatController {
     private static Service conn;
 
     public static void main(String[] args) {
-        // The scanner is temporally, im just testing rn
-        // it will be removed later
         Scanner scanner = new Scanner(System.in);
 
         String name = scanner.nextLine();
@@ -26,7 +24,6 @@ public class ChatController {
         }
 
         // Shutdown hook
-        // I don't think this will work, sorry it's my first time trying this
         Runtime.getRuntime().addShutdownHook(new ShutdownThread());
     }
 

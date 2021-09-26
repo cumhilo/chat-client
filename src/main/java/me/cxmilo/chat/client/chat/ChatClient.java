@@ -5,6 +5,7 @@ import me.cxmilo.chat.client.client.Client;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.Objects;
+import java.util.logging.Logger;
 
 public class ChatClient {
 
@@ -28,24 +29,7 @@ public class ChatClient {
             // client.getSocket().getOutputStream().write(EncryptMessage.toBase64(line));
             client.getSocket().getOutputStream().write(line.getBytes(StandardCharsets.UTF_8));
         } catch (IOException e) {
-            e.printStackTrace();
+            Logger.getLogger("ClientSocket").severe(e.getMessage());
         }
     }
-
-    // Unused
-    /*public void readMessage(Client client) {
-        Objects.requireNonNull(client.getChannel(), "Invalid channel, please set a valid channel.");
-
-        String result = "";
-
-        try {
-            result += (char) client.getSocket().getInputStream().read();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        if (client.getChannel().equals(result.split(";")[0])) {
-            System.out.println();
-        }
-    }*/
 }
