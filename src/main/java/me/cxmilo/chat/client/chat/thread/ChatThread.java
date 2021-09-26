@@ -6,6 +6,8 @@ import me.cxmilo.chat.client.client.Client;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ChatThread extends Thread {
 
@@ -24,14 +26,10 @@ public class ChatThread extends Thread {
             try {
                 chat.sendMessage(reader.readLine());
             } catch (IOException e) {
-                e.printStackTrace();
+                Logger.getLogger("ClientChat").severe(e.getMessage());
             }
         }
 
-        try {
-            client.getSocket().close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Logger.getLogger("ClientChat").log(Level.INFO, "ChatThread has been finalized");
     }
 }

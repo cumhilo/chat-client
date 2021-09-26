@@ -6,6 +6,8 @@ import me.cxmilo.chat.client.service.Service;
 
 import java.io.IOException;
 import java.net.Socket;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ClientConnectService implements Service {
 
@@ -21,36 +23,38 @@ public class ClientConnectService implements Service {
         this.channel = channel;
     }
 
-
-    // I think this could not be considered as a service, I will probably change it.
     @Override
     public boolean start() {
         try {
             socket = new Socket(PROXY, PORT);
         } catch (IOException e) {
-            e.printStackTrace();
+            Logger.getLogger("ClientSocket").severe(e.getMessage());
             return false;
         }
 
         // Initialize the chat
         Client client = new Client(socket);
-
         client.setName(name);
         client.setChannel(channel);
 
         new ChatThread(client).start();
-        System.out.println("Successfully started");
+        Logger.getLogger("ClientChat").log(Level.INFO, "The chat thread has been successfully started");
         return true;
     }
 
     @Override
     public boolean stop() {
         try {
-            socket.close();
+            socket.shutdownOutput();
+            socket.shutdownInput();
+            if (socket.isConnected()) {
+                socket.close();
+            }
         } catch (IOException e) {
-            e.printStackTrace();
+            Logger.getLogger("ClientSocket").severe(e.getMessage());
             return false;
         }
+
         return true;
     }
 }
